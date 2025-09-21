@@ -67,6 +67,4 @@ function ocultarTitulo() {
     titulo.style.display = "none";
   }, 3000); // Espera 3 segundos antes de ocultar completamente
 }
-
-// Llama a la función después de 216 segundos (216,000 milisegundos)
 setTimeout(ocultarTitulo, 216000);
