@@ -1,253 +1,261 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQAAAAEACAYAAABccqhmAAAAAXNSR0IArs4c6QAAF5FJREFUeF7t3Q+YXVV95/vPcw4JISQhCQnZCAkJIbMTCRkkyI6xLIaAgsCoiDiCOu4/FFVERHFARFwUXUVFFFEUFESUARZFxAVkKxYQIbYQEkIyZCEDISQh5z7n/rG+N7m3SXZz33s339/n93o+d/fuPd/7e9/vea/vdZ73eZ/3pW+9613w3e9+N3zve98b3vGOd8BPfvKTARERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERER-GMAaqElFTkSuQmCC" type="image/x--icon">
-    <title>Flowers</title>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,500;1,900&display=swap');
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Poppins', cursive;
-        }
-        
-        body {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            width: 100%;
-            height: 100vh;
-            color: azure;
-            background-color: #000;
-            overflow: hidden;
-            text-align: center;
-        }
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQAAAAEACAYAAABccqhmAAAAAXNSR0IArs4c6QAAF5FJREFUeF7t3Q+YXVV95/vPcw4JISQhCQnZCAkJIbMTCRkkyI6xLIaAgsCoiDiCOu4/FFVERHFARFwUXUVFFFEUFESUARZFxAVkKxYQIbYQEkIyZCEDISQh5z7n/rG+N7m3SXZz33s339/n93o+d/fuPd/7e9/vea/vdZ73eZ/3pW+9613w3e9+N3zve98b3vGOd8BPfvKTARERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERER-GMAaqElFTkSuQmCC" type="image/x--icon" />
+  <title>Flowers</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,500;1,900&display=swap');
 
-        /* --- Canvas for interactive animation --- */
-        #particle-canvas {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 1;
-            background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
-        }
+    :root{
+      /* Tipografías y espacios fluidos */
+      --fs-h1: clamp(48px, 18vw, 112px);
+      --fs-desc: clamp(14px, 4.2vw, 24px);
+      --pad-inline: clamp(12px, 4vw, 32px);
+      --btn-pad-y: clamp(12px, 1.8vw, 16px);
+      --btn-pad-x: clamp(20px, 6vw, 32px);
+      --maxw: 1000px;
+      --min-bright: 0.30; /* subido (antes 0.15) para que la “a” nunca se confunda visualmente */
+    }
 
-        /* Container for fade-in animation */
-        .content-wrapper {
-            opacity: 0;
-            animation: fadeInContent 2s ease-in forwards;
-            animation-delay: 0.5s;
-            z-index: 2; /* Ensures content is above the canvas */
-            position: relative;
-            width: 90%; /* Prevents content from touching edges on small screens */
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
+    *{ box-sizing: border-box; margin:0; padding:0; }
+    body{
+      font-family: 'Poppins', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color: azure;
+      background: #000;
+      min-height: 100dvh;
+      display: grid;
+      place-items: center;
+      overflow-x: hidden;
+      text-align: center;
+      padding-bottom: env(safe-area-inset-bottom);
+    }
 
-        @keyframes fadeInContent {
-            to {
-                opacity: 1;
-            }
-        }
-        
-        .greetings {
-            font-size: 12vw; /* Use viewport width for fluid scaling */
-            font-weight: 900;
-            display: flex; /* Use flexbox for letter spacing */
-            justify-content: center; /* Center the letters within the flex container */
-            gap: 0.1em; /* Space between letters */
-            width: 100%; /* Ensure the container takes full width to center properly */
-        }
+    /* === Canvas exactamente como el original, visible y detrás del contenido === */
+    #particle-canvas{
+      position: absolute; /* (antes fixed) */
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      z-index: 1;
+      pointer-events: none; /* no bloquea toques */
+      background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
+    }
 
-        @media (min-width: 900px) {
-            .greetings {
-                font-size: 7rem; /* Cap the font size on large screens */
-            }
-        }
-        
-        .greetings > span {
-            /* Smooth transition for color and shadow */
-            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
-        }
-        
-        /* Define base colors for each letter */
-        .greetings > span:nth-child(1) { --hue: 180; } /* H - Cian */
-        .greetings > span:nth-child(2) { --hue: 200; } /* O - Azul claro */
-        .greetings > span:nth-child(3) { --hue: 260; } /* L - Violeta */
-        .greetings > span:nth-child(4) { --hue: 300; } /* A - Magenta */
-        .greetings > span:nth-child(5) { --hue: 330; } /* ! - Rosa */
+    .content-wrapper{
+      position: relative;
+      z-index: 2; /* por encima del canvas */
+      width: min(100%, var(--maxw));
+      padding-inline: var(--pad-inline);
+      opacity: 0;
+      display: flex; flex-direction: column; align-items: center;
+      animation: fadeInContent .9s ease-out forwards; animation-delay: .25s;
+      gap: clamp(8px, 2.5vw, 16px);
+    }
+    @keyframes fadeInContent{ to{ opacity:1 } }
 
-        .description {
-            font-size: 4vw; /* Use viewport width for fluid scaling */
-            margin-bottom: 30px;
-            margin-top: 10px; /* Add some space above */
-            text-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
-            animation: float 4s ease-in-out infinite;
-            animation-delay: 2s;
-        }
+    .greetings{
+      font-weight: 900;
+      font-size: var(--fs-h1);
+      line-height: 1;
+      display: flex; justify-content: center; gap: .08em;
+      width: 100%;
+      -webkit-text-size-adjust: 100%; text-size-adjust: 100%;
+      font-variant-ligatures: none; /* evita ligaduras raras */
+    }
+    .greetings > span{ transition: color .35s linear, text-shadow .35s linear; }
 
-        @media (min-width: 900px) {
-            .description {
-                font-size: 1.5rem; /* Cap the font size on large screens */
-            }
-        }
+    /* Tonos SIN verdes: azules → violetas → magentas → rosa */
+    .greetings > span:nth-child(1){ --hue: 210; } /* H */
+    .greetings > span:nth-child(2){ --hue: 230; } /* o */
+    .greetings > span:nth-child(3){ --hue: 270; } /* l */
+    .greetings > span:nth-child(4){ --hue: 310; } /* a */
+    .greetings > span:nth-child(5){ --hue: 330; } /* ! */
 
-        @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-8px); }
-            100% { transform: translateY(0px); }
-        }
-        
-        .botones {
-            background-color: transparent;
-            border: none;
-            padding: 0;
-            cursor: pointer;
-            position: relative; /* For the shine effect */
-            overflow: hidden; /* For the shine effect */
-            border-radius: 50px; /* For the shine effect */
-        }
-        
-        .botones a {
-            display: inline-block;
-            text-decoration: none;
-            font-size: 1rem;
-            color: #fff;
-            background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
-            padding: 15px 30px;
-            border-radius: 50px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            position: relative;
-            z-index: 1;
-        }
+    .description{
+      font-size: var(--fs-desc);
+      text-shadow: 0 0 5px rgba(255,255,255,.28);
+      animation: float 4s ease-in-out infinite; animation-delay: .6s;
+    }
+    @keyframes float{ 0%{transform:translateY(0)}50%{transform:translateY(-8px)}100%{transform:translateY(0)} }
 
-        /* Shine animation */
-        .botones::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.4), transparent);
-            transition: all 0.7s;
-            animation: shine 4s linear infinite;
-            animation-delay: 2s;
-        }
+    .button{ margin-top: clamp(6px, 2.5vw, 12px); }
+    .botones{
+      background: transparent; border: none; padding: 0; cursor: pointer;
+      position: relative; overflow: hidden; border-radius: 999px;
+    }
+    .botones a{
+      display: inline-block; text-decoration: none;
+      font-size: clamp(14px, 4vw, 18px); color: #fff;
+      background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+      padding: var(--btn-pad-y) var(--btn-pad-x);
+      border-radius: 999px; box-shadow: 0 4px 15px rgba(0,0,0,.25);
+      transition: transform .2s ease, box-shadow .2s ease; min-height: 44px; line-height: 1.2;
+    }
+    .botones::before{
+      content:""; position:absolute; inset:0; left:-120%;
+      background: linear-gradient(120deg, transparent, rgba(255,255,255,.4), transparent);
+      animation: shine 4s linear infinite; animation-delay: 2s;
+    }
+    @keyframes shine{ 0%{left:-120%} 50%,100%{left:120%} }
+    .botones a:hover{ transform: translateY(-1px); box-shadow: 0 8px 25px rgba(220,39,67,.35); }
 
-        @keyframes shine {
-            0% { left: -100%; }
-            50%, 100% { left: 100%; }
-        }
-        
-        .botones a:hover {
-            transform: scale(1.05);
-            box-shadow: 0 8px 25px rgba(220, 39, 67, 0.4);
-        }
-        
-    </style>
+    @media (prefers-reduced-motion: reduce){
+      .description{ animation: none; }
+    }
+  </style>
 </head>
-
 <body>
-    <!-- Canvas for interactive background animation -->
-    <canvas id="particle-canvas"></canvas>
+  <!-- Fondo -->
+  <canvas id="particle-canvas"></canvas>
 
-    <div class="content-wrapper">
-        <div class="greetings">
-            <span>H</span><span>o</span><span>l</span><span>a</span><span>!</span>
-        </div>
-        <div class="description">
-            <span>ESTE DETALLE ES PARA TI :)</span>
-        </div>
-        <div class="button">
-            <button class="botones">
-                <a href="flower.html">CLICK AQUÍ</a>
-            </button>
-        </div>
+  <!-- Contenido -->
+  <div class="content-wrapper">
+    <div class="greetings">
+      <!-- IMPORTANTE: aquí queda “Hola!” exactamente -->
+      <span>H</span><span>o</span><span>l</span><span>a</span><span>!</span>
     </div>
+    <div class="description">
+      <span>ESTE DETALLE ES PARA TI :)</span>
+    </div>
+    <div class="button">
+      <button class="botones">
+        <a href="flower.html" aria-label="Ir a la página de flores">CLICK AQUÍ</a>
+      </button>
+    </div>
+  </div>
 
-    <script>
-        // --- SCRIPT FOR PARTICLE BACKGROUND ---
-        // This script remains the same as before.
-        const canvas = document.getElementById('particle-canvas');
-        const ctx = canvas.getContext('2d');
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-        let particlesArray;
-        const interactionPoint = { x: null, y: null, radius: (canvas.height / 120) * (canvas.width / 120) };
-        window.addEventListener('mousemove', (event) => { interactionPoint.x = event.x; interactionPoint.y = event.y; });
-        window.addEventListener('touchmove', (event) => { if (event.touches.length > 0) { interactionPoint.x = event.touches[0].clientX; interactionPoint.y = event.touches[0].clientY; } }, { passive: true });
-        window.addEventListener('mouseout', () => { interactionPoint.x = null; interactionPoint.y = null; });
-        window.addEventListener('touchend', () => { interactionPoint.x = null; interactionPoint.y = null; });
-        class Particle { constructor(x, y, directionX, directionY, size, color) { this.x = x; this.y = y; this.directionX = directionX; this.directionY = directionY; this.size = size; this.color = color; } draw() { ctx.beginPath(); ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2, false); ctx.fillStyle = 'rgba(255, 255, 255, 0.5)'; ctx.fill(); } update() { if (this.x > canvas.width || this.x < 0) { this.directionX = -this.directionX; } if (this.y > canvas.height || this.y < 0) { this.directionY = -this.directionY; } this.x += this.directionX; this.y += this.directionY; this.draw(); } }
-        function init() { particlesArray = []; let numberOfParticles; if (canvas.width < 768) { numberOfParticles = (canvas.height * canvas.width) / 20000; } else { numberOfParticles = (canvas.height * canvas.width) / 9000; } for (let i = 0; i < numberOfParticles; i++) { const size = (Math.random() * 2) + 1; const x = (Math.random() * ((innerWidth - size * 2) - (size * 2)) + size * 2); const y = (Math.random() * ((innerHeight - size * 2) - (size * 2)) + size * 2); const directionX = (Math.random() * 0.4) - 0.2; const directionY = (Math.random() * 0.4) - 0.2; const color = '#fff'; particlesArray.push(new Particle(x, y, directionX, directionY, size, color)); } }
-        function animate() { requestAnimationFrame(animate); ctx.clearRect(0, 0, innerWidth, innerHeight); for (let i = 0; i < particlesArray.length; i++) { particlesArray[i].update(); } connect(); }
-        function connect() { let opacityValue = 1; for (let a = 0; a < particlesArray.length; a++) { for (let b = a; b < particlesArray.length; b++) { const distance = ((particlesArray[a].x - particlesArray[b].x) * (particlesArray[a].x - particlesArray[b].x)) + ((particlesArray[a].y - particlesArray[b].y) * (particlesArray[a].y - particlesArray[b].y)); if (distance < (canvas.width/7) * (canvas.height/7)) { opacityValue = 1 - (distance/20000); let dx = interactionPoint.x - particlesArray[a].x; let dy = interactionPoint.y - particlesArray[a].y; let mouseDistance = Math.sqrt(dx*dx+dy*dy); if (mouseDistance < interactionPoint.radius) { ctx.strokeStyle = `rgba(0, 255, 255, ${opacityValue})`; ctx.lineWidth = 1; ctx.beginPath(); ctx.moveTo(particlesArray[a].x, particlesArray[a].y); ctx.lineTo(particlesArray[b].x, particlesArray[b].y); ctx.stroke(); } } } } }
-        window.addEventListener('resize', () => { canvas.width = innerWidth; canvas.height = innerHeight; interactionPoint.radius = ((canvas.height/80)*(canvas.width/80)); init(); });
-        init();
-        animate();
+  <script>
+    /* ---------- CANVAS: nitidez + fondo original ---------- */
+    const canvas = document.getElementById('particle-canvas');
+    const ctx = canvas.getContext('2d', { alpha: true });
 
+    function sizeCanvas(){
+      const dpr = Math.max(1, Math.min(2, window.devicePixelRatio || 1));
+      const cssW = canvas.clientWidth = window.innerWidth;
+      const cssH = canvas.clientHeight = window.innerHeight;
+      canvas.width = Math.floor(cssW * dpr);
+      canvas.height = Math.floor(cssH * dpr);
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    }
+    sizeCanvas();
+    window.addEventListener('resize', sizeCanvas);
 
-        // --- SCRIPT FOR NEON LETTER ANIMATION ---
-        const letters = document.querySelectorAll('.greetings span');
-        let activeIndex = 0;
+    let particles = [];
+    const pointer = { x: null, y: null, radius: (window.innerHeight/120) * (window.innerWidth/120) };
 
-        function updateLetterGlow() {
-            letters.forEach((letter, i) => {
-                // Calculate distance from the active letter
-                const numLetters = letters.length;
-                let distance = Math.abs(i - activeIndex);
-                // Handle wrap-around distance (e.g., distance from '!' to 'H')
-                if (distance > numLetters / 2) {
-                    distance = numLetters - distance;
-                }
+    class Particle{
+      constructor(x,y,dx,dy,size){ this.x=x; this.y=y; this.dx=dx; this.dy=dy; this.size=size; }
+      draw(){ ctx.beginPath(); ctx.arc(this.x,this.y,this.size,0,Math.PI*2,false); ctx.fillStyle='rgba(255,255,255,0.5)'; ctx.fill(); }
+      update(w,h){
+        if(this.x > w || this.x < 0) this.dx *= -1;
+        if(this.y > h || this.y < 0) this.dy *= -1;
+        this.x += this.dx; this.y += this.dy;
+        this.draw();
+      }
+    }
 
-                // Calculate brightness based on distance. 
-                // The active letter has full brightness (1.0), the next ones are dimmer.
-                // A minimum brightness ensures letters are always visible.
-                const brightness = Math.max(0.15, 1 - distance * 0.35);
+    function init(){
+      particles = [];
+      let numberOfParticles;
+      if (canvas.clientWidth < 768){
+        numberOfParticles = (canvas.clientHeight * canvas.clientWidth) / 20000; // como tu original
+      }else{
+        numberOfParticles = (canvas.clientHeight * canvas.clientWidth) / 9000;
+      }
+      numberOfParticles = Math.min(250, Math.floor(numberOfParticles));
 
-                // Get the base hue from the CSS variable
-                const hue = getComputedStyle(letter).getPropertyValue('--hue');
-                
-                // Set the color and text-shadow based on brightness
-                const color = `hsla(${hue}, 100%, 70%, ${brightness})`;
-                
-                // The shadow has multiple layers for a realistic neon glow
-                const shadow = [
-                    `0 0 5px hsla(${hue}, 100%, 60%, ${brightness * 0.8})`,
-                    `0 0 15px hsla(${hue}, 100%, 60%, ${brightness * 0.6})`,
-                    `0 0 30px hsla(${hue}, 100%, 60%, ${brightness * 0.4})`,
-                    `0 0 50px hsla(${hue}, 100%, 60%, ${brightness * 0.2})`
-                ].join(', ');
-                
-                letter.style.color = color;
-                letter.style.textShadow = shadow;
-            });
+      for (let i = 0; i < numberOfParticles; i++){
+        const size = (Math.random() * 2) + 1;
+        const x = Math.random() * (window.innerWidth - size * 4) + size * 2;
+        const y = Math.random() * (window.innerHeight - size * 4) + size * 2;
+        const dx = (Math.random() * 0.4) - 0.2;
+        const dy = (Math.random() * 0.4) - 0.2;
+        particles.push(new Particle(x,y,dx,dy,size));
+      }
+    }
+    init();
 
-            // Move to the next letter in the sequence
-            activeIndex = (activeIndex + 1) % letters.length;
+    function connect(){
+      let opacityValue = 1;
+      for(let a=0;a<particles.length;a++){
+        for(let b=a;b<particles.length;b++){
+          const dx = particles[a].x - particles[b].x;
+          const dy = particles[a].y - particles[b].y;
+          const distance = dx*dx + dy*dy;
+          if (distance < (canvas.clientWidth/7) * (canvas.clientHeight/7)){
+            opacityValue = 1 - (distance/20000);
+
+            const mx = pointer.x, my = pointer.y;
+            if(mx != null && my != null){
+              const mdx = mx - particles[a].x;
+              const mdy = my - particles[a].y;
+              const mouseDistance = Math.hypot(mdx, mdy);
+              if (mouseDistance < pointer.radius){
+                ctx.strokeStyle = `rgba(0, 255, 255, ${Math.max(0, Math.min(opacityValue, 1))})`;
+                ctx.lineWidth = 1;
+                ctx.beginPath();
+                ctx.moveTo(particles[a].x, particles[a].y);
+                ctx.lineTo(particles[b].x, particles[b].y);
+                ctx.stroke();
+              }
+            }
+          }
         }
+      }
+    }
 
-        // Start the animation loop
-        setInterval(updateLetterGlow, 700); // Change the value (in ms) to make it faster or slower
+    function animate(){
+      ctx.clearRect(0, 0, canvas.clientWidth, canvas.clientHeight);
+      for(let i=0;i<particles.length;i++){ particles[i].update(canvas.clientWidth, canvas.clientHeight); }
+      connect();
+      requestAnimationFrame(animate);
+    }
+    animate();
 
-        // Initial call to set the first letter's glow
-        updateLetterGlow();
+    // Interacción (igual que tu versión)
+    window.addEventListener('mousemove', e => { pointer.x = e.clientX; pointer.y = e.clientY; });
+    window.addEventListener('mouseout', () => { pointer.x = pointer.y = null; });
+    window.addEventListener('touchmove', e => {
+      if(e.touches.length > 0){ pointer.x = e.touches[0].clientX; pointer.y = e.touches[0].clientY; }
+    }, { passive: true });
+    window.addEventListener('touchend', () => { pointer.x = pointer.y = null; });
+    window.addEventListener('resize', () => { sizeCanvas(); init(); });
 
-    </script>
+    /* ---------- NEÓN POR LETRA (más legible) ---------- */
+    const letters = document.querySelectorAll('.greetings span');
+    let activeIndex = 0;
+
+    function updateLetterGlow(){
+      const n = letters.length;
+      for(let i=0;i<n;i++){
+        let d = Math.abs(i - activeIndex);
+        if(d > n/2) d = n - d;
+
+        // brillo mínimo subido (var(--min-bright)) para que siempre se lea “Hola!”
+        const brightness = Math.max(parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--min-bright')) || 0.3, 1 - d * 0.35);
+        const hue = getComputedStyle(letters[i]).getPropertyValue('--hue').trim();
+
+        const color = `hsla(${hue}, 100%, 70%, ${brightness})`;
+        const shadow = [
+          `0 0 5px hsla(${hue}, 100%, 60%, ${brightness * 0.8})`,
+          `0 0 15px hsla(${hue}, 100%, 60%, ${brightness * 0.6})`,
+          `0 0 30px hsla(${hue}, 100%, 60%, ${brightness * 0.4})`,
+          `0 0 50px hsla(${hue}, 100%, 60%, ${brightness * 0.2})`
+        ].join(', ');
+
+        letters[i].style.color = color;
+        letters[i].style.textShadow = shadow;
+      }
+      activeIndex = (activeIndex + 1) % n;
+    }
+
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if(!reduceMotion){
+      setInterval(updateLetterGlow, 700);
+      updateLetterGlow();
+    }
+  </script>
 </body>
-
 </html>
-
