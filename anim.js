@@ -1,6 +1,7 @@
 var audio = document.querySelector("audio");
 var lyrics = document.querySelector("#lyrics");
 
+// === CONFIGURACIÓN DE LETRAS ===
 var lyricsData = [
   { text: "Lo sentía tan cercano, lo sentía desde niña", time: 1, duration: 6 },
   { text: "Ella sabía que él sabía, que algún día pasaría", time: 6, duration: 5 },
@@ -35,6 +36,7 @@ var lyricsData = [
   { text: "Y se olvidaron de sus flores amarillas", time: 165, duration: 9 }
 ];
 
+// === SINCRONIZACIÓN Y ANIMACIONES ===
 function updateLyrics() {
   var currentTime = audio.currentTime;
   
@@ -93,6 +95,7 @@ function updateLyrics() {
 
 setInterval(updateLyrics, 100);
 
+// === FUNCIÓN TÍTULO ===
 function ocultarTitulo() {
   var titulo = document.querySelector(".titulo");
   titulo.style.animation = "fadeOut 3s ease-in-out forwards";

@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQAAAAEACAYAAABccqhmAAAAAXNSR0IArs4c6QAAF5FJREFUeF7t3Q+YXVV95/vPcw4JISQhCQnZCAkJIbMTCRkkyI6xLIaAgsCoiDiCOu4/FFVERHFARFwUXUVFFFEUFESUARZFxAVkKxYQIbYQEkIyZCEDISQh5z7n/rG+N7m3SXZz33s339/n93o+d/fuPd/7e9/vea/vdZ73eZ/3pW+9613w3e9+N3zve98b3vGOd8BPfvKTARERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERER-GMAaqElFTkSuQmCC" type="image/x--icon" />
   <title>Flowers</title>
+  <!-- === ESTILOS PRINCIPALES === -->
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,500;1,900&display=swap');
 
@@ -104,6 +105,7 @@
   </style>
 </head>
 <body>
+  <!-- === CONTENIDO PRINCIPAL === -->
   <!-- Fondo -->
   <canvas id="particle-canvas"></canvas>
 
@@ -123,6 +125,7 @@
     </div>
   </div>
 
+  <!-- === ANIMACIONES Y EFECTOS === -->
   <script>
     /* ---------- CANVAS: nitidez + fondo original ---------- */
     const canvas = document.getElementById('particle-canvas');
@@ -219,7 +222,7 @@
     }, { passive: true });
     window.addEventListener('touchend', () => { pointer.x = pointer.y = null; });
     window.addEventListener('resize', () => { sizeCanvas(); init(); });
-    
+
     const letters = document.querySelectorAll('.greetings span');
     let activeIndex = 0;
 
