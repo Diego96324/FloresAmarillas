@@ -10,14 +10,13 @@
     @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,500;1,900&display=swap');
 
     :root{
-      /* Tipografías y espacios fluidos */
       --fs-h1: clamp(48px, 18vw, 112px);
       --fs-desc: clamp(14px, 4.2vw, 24px);
       --pad-inline: clamp(12px, 4vw, 32px);
       --btn-pad-y: clamp(12px, 1.8vw, 16px);
       --btn-pad-x: clamp(20px, 6vw, 32px);
       --maxw: 1000px;
-      --min-bright: 0.30; /* subido (antes 0.15) para que la “a” nunca se confunda visualmente */
+      --min-bright: 0.30;
     }
 
     *{ box-sizing: border-box; margin:0; padding:0; }
@@ -33,9 +32,8 @@
       padding-bottom: env(safe-area-inset-bottom);
     }
 
-    /* === Canvas exactamente como el original, visible y detrás del contenido === */
     #particle-canvas{
-      position: absolute; /* (antes fixed) */
+      position: absolute;
       top: 0; left: 0;
       width: 100%; height: 100%;
       z-index: 1;
@@ -45,7 +43,7 @@
 
     .content-wrapper{
       position: relative;
-      z-index: 2; /* por encima del canvas */
+      z-index: 2;
       width: min(100%, var(--maxw));
       padding-inline: var(--pad-inline);
       opacity: 0;
@@ -62,11 +60,10 @@
       display: flex; justify-content: center; gap: .08em;
       width: 100%;
       -webkit-text-size-adjust: 100%; text-size-adjust: 100%;
-      font-variant-ligatures: none; /* evita ligaduras raras */
+      font-variant-ligatures: none;
     }
     .greetings > span{ transition: color .35s linear, text-shadow .35s linear; }
 
-    /* Tonos SIN verdes: azules → violetas → magentas → rosa */
     .greetings > span:nth-child(1){ --hue: 210; } /* H */
     .greetings > span:nth-child(2){ --hue: 230; } /* o */
     .greetings > span:nth-child(3){ --hue: 270; } /* l */
@@ -214,7 +211,7 @@
     }
     animate();
 
-    // Interacción (igual que tu versión)
+    // Interacción
     window.addEventListener('mousemove', e => { pointer.x = e.clientX; pointer.y = e.clientY; });
     window.addEventListener('mouseout', () => { pointer.x = pointer.y = null; });
     window.addEventListener('touchmove', e => {
@@ -222,8 +219,7 @@
     }, { passive: true });
     window.addEventListener('touchend', () => { pointer.x = pointer.y = null; });
     window.addEventListener('resize', () => { sizeCanvas(); init(); });
-
-    /* ---------- NEÓN POR LETRA (más legible) ---------- */
+    
     const letters = document.querySelectorAll('.greetings span');
     let activeIndex = 0;
 
