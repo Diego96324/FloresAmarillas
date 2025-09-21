@@ -30,6 +30,7 @@
             text-align: center;
         }
 
+        /* --- Canvas for interactive animation --- */
         #particle-canvas {
             position: absolute;
             top: 0;
@@ -40,13 +41,14 @@
             background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
         }
 
+        /* Container for fade-in animation */
         .content-wrapper {
             opacity: 0;
             animation: fadeInContent 2s ease-in forwards;
             animation-delay: 0.5s;
-            z-index: 2;
+            z-index: 2; /* Ensures content is above the canvas */
             position: relative;
-            width: 90%;
+            width: 90%; /* Prevents content from touching edges on small screens */
         }
 
         @keyframes fadeInContent {
@@ -56,14 +58,15 @@
         }
         
         .greetings {
-            font-size: 12vw;
+            font-size: 12vw; /* Use viewport width for fluid scaling */
             font-weight: 900;
+            /* Cinematic text effect */
             animation: text-flicker 4s linear infinite;
         }
 
         @media (min-width: 900px) {
             .greetings {
-                font-size: 7rem;
+                font-size: 7rem; /* Cap the font size on large screens */
             }
         }
         
@@ -89,7 +92,7 @@
         }
         
         .description {
-            font-size: 4vw;
+            font-size: 4vw; /* Use viewport width for fluid scaling */
             margin-bottom: 30px;
             text-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
             animation: float 4s ease-in-out infinite;
@@ -98,7 +101,7 @@
 
         @media (min-width: 900px) {
             .description {
-                font-size: 1.5rem;
+                font-size: 1.5rem; /* Cap the font size on large screens */
             }
         }
 
@@ -113,9 +116,9 @@
             border: none;
             padding: 0;
             cursor: pointer;
-            position: relative;
-            overflow: hidden;
-            border-radius: 50px;
+            position: relative; /* For the shine effect */
+            overflow: hidden; /* For the shine effect */
+            border-radius: 50px; /* For the shine effect */
         }
         
         .botones a {
@@ -132,6 +135,7 @@
             z-index: 1;
         }
 
+        /* Shine animation */
         .botones::before {
             content: '';
             position: absolute;
@@ -159,6 +163,7 @@
 </head>
 
 <body>
+    <!-- Canvas for interactive background animation -->
     <canvas id="particle-canvas"></canvas>
 
     <div class="content-wrapper">
@@ -176,6 +181,7 @@
     </div>
 
     <script>
+        // --- SCRIPT FOR INTERACTIVE PARTICLE BACKGROUND ---
         const canvas = document.getElementById('particle-canvas');
         const ctx = canvas.getContext('2d');
         canvas.width = window.innerWidth;
@@ -183,35 +189,28 @@
 
         let particlesArray;
 
+        // Get mouse/touch position
         const interactionPoint = {
             x: null,
             y: null,
-            radius: 0
+            radius: (canvas.height / 120) * (canvas.width / 120)
         };
 
-        function setInteractionRadius() {
-            const isMobile = canvas.width < 768;
-            if (isMobile) {
-                interactionPoint.radius = (canvas.height / 40) * (canvas.width / 40);
-            } else {
-                interactionPoint.radius = (canvas.height / 80) * (canvas.width / 80);
-            }
-        }
-        
-        setInteractionRadius();
-
+        // Update position for mouse
         window.addEventListener('mousemove', (event) => {
             interactionPoint.x = event.x;
             interactionPoint.y = event.y;
         });
 
+        // Update position for touch
         window.addEventListener('touchmove', (event) => {
             if (event.touches.length > 0) {
                 interactionPoint.x = event.touches[0].clientX;
                 interactionPoint.y = event.touches[0].clientY;
             }
-        }, { passive: true });
+        });
         
+        // Clear position on mouse out or touch end
         window.addEventListener('mouseout', () => {
             interactionPoint.x = null;
             interactionPoint.y = null;
@@ -222,24 +221,27 @@
             interactionPoint.y = null;
         });
 
+
+        // Create Particle
         class Particle {
-            constructor(x, y, directionX, directionY, size) {
+            constructor(x, y, directionX, directionY, size, color) {
                 this.x = x;
                 this.y = y;
                 this.directionX = directionX;
                 this.directionY = directionY;
                 this.size = size;
-                this.originalSize = size;
-                this.color = 'rgba(255, 255, 255, 0.5)';
+                this.color = color;
             }
 
+            // Method to draw individual particles
             draw() {
                 ctx.beginPath();
                 ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2, false);
-                ctx.fillStyle = this.color;
+                ctx.fillStyle = 'rgba(255, 255, 255, 0.5)';
                 ctx.fill();
             }
 
+            // Check particle position, check mouse position, move the particle, draw the particle
             update() {
                 if (this.x > canvas.width || this.x < 0) {
                     this.directionX = -this.directionX;
@@ -247,41 +249,18 @@
                 if (this.y > canvas.height || this.y < 0) {
                     this.directionY = -this.directionY;
                 }
-
-                // --- Visual Feedback Logic ---
-                let dx = interactionPoint.x - this.x;
-                let dy = interactionPoint.y - this.y;
-                let distance = Math.sqrt(dx * dx + dy * dy);
-
-                if (distance < interactionPoint.radius) {
-                    // Enlarge and brighten particles within the interaction radius
-                    this.size = this.originalSize * 2.5;
-                    this.color = 'rgba(0, 255, 255, 1)';
-                } else {
-                    // Revert to original state smoothly
-                    if (this.size > this.originalSize) {
-                        this.size -= 0.1;
-                    }
-                    this.color = 'rgba(255, 255, 255, 0.5)';
-                }
-                
-                // Ensure size doesn't go below original
-                if (this.size < this.originalSize) {
-                    this.size = this.originalSize;
-                }
-
-
                 this.x += this.directionX;
                 this.y += this.directionY;
                 this.draw();
             }
         }
 
+        // Create particle array
         function init() {
             particlesArray = [];
             let numberOfParticles;
             if (canvas.width < 768) {
-                numberOfParticles = (canvas.height * canvas.width) / 15000;
+                numberOfParticles = (canvas.height * canvas.width) / 20000;
             } else {
                 numberOfParticles = (canvas.height * canvas.width) / 9000;
             }
@@ -292,11 +271,13 @@
                 const y = (Math.random() * ((innerHeight - size * 2) - (size * 2)) + size * 2);
                 const directionX = (Math.random() * 0.4) - 0.2;
                 const directionY = (Math.random() * 0.4) - 0.2;
+                const color = '#fff';
 
-                particlesArray.push(new Particle(x, y, directionX, directionY, size));
+                particlesArray.push(new Particle(x, y, directionX, directionY, size, color));
             }
         }
 
+        // Animation loop
         function animate() {
             requestAnimationFrame(animate);
             ctx.clearRect(0, 0, innerWidth, innerHeight);
@@ -307,6 +288,7 @@
             connect();
         }
 
+        // Check if particles are close enough to draw a line between them
         function connect() {
             let opacityValue = 1;
             for (let a = 0; a < particlesArray.length; a++) {
@@ -332,10 +314,11 @@
             }
         }
         
+        // Resize event
         window.addEventListener('resize', () => {
             canvas.width = innerWidth;
             canvas.height = innerHeight;
-            setInteractionRadius();
+            interactionPoint.radius = ((canvas.height/80)*(canvas.width/80));
             init();
         });
 
@@ -345,4 +328,3 @@
 </body>
 
 </html>
-
