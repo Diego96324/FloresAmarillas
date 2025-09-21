@@ -515,7 +515,7 @@ body {
   --c: #159faa;
   --line-w: 1.5vmin;
   position: absolute;
-  bottom: 12vmin;
+  bottom: 8vmin;
   left: -7vmin;
   display: flex;
   flex-direction: column;
@@ -530,7 +530,7 @@ body {
 }
 .flower__grass--2 {
   left: 2vmin;
-  bottom: 10vmin;
+  bottom: 6vmin;
   transform: scale(0.5) rotate(75deg) rotateX(10deg) rotateY(-200deg);
   opacity: 0.8;
   z-index: 0;
@@ -548,7 +548,7 @@ body {
 .flower__grass--bottom {
   margin-top: -2px;
   width: var(--line-w);
-  height: 25vmin;
+  height: 20vmin;
   background-image: linear-gradient(to top, transparent, var(--c));
 }
 .flower__grass__leaf {
@@ -567,7 +567,7 @@ body {
   z-index: 100;
 }
 .flower__grass__leaf--1 {
-  top: -6%;
+  top: 5%;
   left: 30%;
   --size: 6vmin;
   transform: rotate(-20deg);
@@ -587,7 +587,7 @@ body {
   }
 }
 .flower__grass__leaf--2 {
-  top: -5%;
+  top: 5%;
   left: -110%;
   --size: 6vmin;
   transform: rotate(10deg);
@@ -647,9 +647,9 @@ body {
   }
 }
 .flower__grass__leaf--5 {
-  top: 20%;
+  top: 15%;
   left: 60%;
-  --size: 10vmin;
+  --size: 8vmin;
   transform: rotate(-24deg) rotateX(-20deg);
   -webkit-animation: growing-grass-ans--5 2s 1.8s linear backwards;
   animation: growing-grass-ans--5 2s 1.8s linear backwards;
@@ -667,9 +667,9 @@ body {
   }
 }
 .flower__grass__leaf--6 {
-  top: 22%;
+  top: 18%;
   left: -180%;
-  --size: 10vmin;
+  --size: 8vmin;
   transform: rotate(10deg);
   -webkit-animation: growing-grass-ans--6 2s 1.6s linear backwards;
   animation: growing-grass-ans--6 2s 1.6s linear backwards;
@@ -687,9 +687,9 @@ body {
   }
 }
 .flower__grass__leaf--7 {
-  top: 39%;
+  top: 30%;
   left: 70%;
-  --size: 10vmin;
+  --size: 8vmin;
   transform: rotate(-10deg);
   -webkit-animation: growing-grass-ans--7 2s 1.4s linear backwards;
   animation: growing-grass-ans--7 2s 1.4s linear backwards;
@@ -707,9 +707,9 @@ body {
   }
 }
 .flower__grass__leaf--8 {
-  top: 40%;
+  top: 35%;
   left: -215%;
-  --size: 11vmin;
+  --size: 9vmin;
   transform: rotate(10deg);
   -webkit-animation: growing-grass-ans--8 2s 1.2s linear backwards;
   animation: growing-grass-ans--8 2s 1.2s linear backwards;
@@ -728,7 +728,7 @@ body {
 }
 .flower__grass__overlay {
   position: absolute;
-  top: -10%;
+  top: 0%;
   right: 0%;
   width: 100%;
   height: 100%;
@@ -1657,3 +1657,135 @@ h1 {
 }
 
 /* Agregar más estilos según sea necesario */
+
+/* ======================================================================
+   LAYOUT OVERRIDES — Flores Amarillas (2025-09-21)
+   Objetivo:
+   - Texto de agradecimiento ARRIBA (más pequeño).
+   - Centro libre para letras/animaciones (#lyrics).
+   - Flores PEGADAS ABAJO, un poco más abajo en PC.
+   Nota: dejamos el resto del CSS tal cual; esto solo sobreecribe posiciones.
+   ====================================================================== */
+
+html, body { height: 100%; }
+
+/* El body original usa flex y empuja contenido: lo anulamos aquí */
+body {
+  display: block !important;
+  align-items: initial !important;
+  justify-content: initial !important;
+}
+
+/* El HTML trae <body class="container"> que PAUSA animaciones.
+   Rehabilitamos las animaciones explícitamente. */
+body.container * {
+  -webkit-animation-play-state: running !important;
+  animation-play-state: running !important;
+}
+
+/* ——— Texto de agradecimiento ARRIBA ——— */
+.titulo {
+  position: fixed !important;
+  top: clamp(10px, 3.5vh, 40px) !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  width: min(92vw, 900px) !important;
+  margin: 0 !important;
+  padding: 0 .75rem !important;
+  text-align: center !important;
+  z-index: 200 !important;
+
+  /* Tipografía legible y con más presencia */
+  font-family: "Arial Narrow", Arial, sans-serif;
+  color: yellow;
+  font-weight: bold;
+  font-size: clamp(18px, 3.2vw, 36px);        /* Aumentado de 2.2vw a 3.2vw y de 28px a 36px */
+  line-height: 1.35;
+  letter-spacing: 4px; /* antes 10px */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8); /* Añadir sombra para mejor contraste */
+  opacity: 0;          /* respeta tu fadeIn */
+  animation: fadeIn 3s ease-in-out forwards;
+}
+
+/* ——— Escenario central para letras animadas ——— */
+#lyrics {
+  position: fixed !important;
+  left: 50% !important;
+  top: 45% !important;                               /* Posición por defecto (móvil) - un poco hacia arriba */
+  transform: translate(-50%, -50%) !important;
+  width: min(90vw, 1200px) !important;
+  text-align: center !important;
+  z-index: 120 !important;
+  pointer-events: none !important;
+  
+  /* Tipografía estilo YouTube Music */
+  font-family: "Arial Black", "Helvetica Bold", Arial, sans-serif !important;
+  font-size: clamp(32px, 6vw, 72px) !important;
+  font-weight: 900 !important;
+  color: #ffffff !important;
+  line-height: 1.2 !important;
+  letter-spacing: 2px !important;
+  
+  /* Efectos visuales */
+  text-shadow: 
+    0 0 10px rgba(255, 255, 255, 0.3),
+    0 0 20px rgba(255, 255, 255, 0.2),
+    2px 2px 8px rgba(0, 0, 0, 0.8) !important;
+  
+  /* Animación suave */
+  transition: all 0.3s ease-in-out !important;
+  
+  /* Respaldo de fuentes */
+  font-family: 
+    "Arial Black", 
+    "Impact", 
+    "Helvetica Bold", 
+    "Trebuchet MS Bold",
+    Arial, 
+    sans-serif !important;
+}
+
+/* ——— Flores pegadas ABAJO ——— */
+.flowers {
+  position: fixed !important;
+  left: 50% !important;
+  bottom: -6vh !important;   /* más abajo para que no “suban” en PC */
+  transform: translateX(-50%) scale(var(--flowers-scale, 1)) !important;
+  margin: 0 !important;
+  z-index: 20 !important;
+}
+
+/* —— Móvil —— */
+@media (max-width: 600px) {
+  .titulo {
+    top: 2.5vh !important;
+    font-size: clamp(16px, 5vw, 28px) !important;    /* Aumentado de 4.1vw a 5vw y de 22px a 28px */
+    letter-spacing: 2px !important;
+  }
+  :root { --flowers-scale: 0.95; }
+  #lyrics { 
+    top: 40% !important;                            /* Un poco más arriba en móvil */
+    font-size: clamp(24px, 8vw, 48px) !important;
+    letter-spacing: 1px !important;
+    line-height: 1.3 !important;
+  }
+  .flowers { bottom: -3vh !important; }
+}
+
+/* —— Escritorio —— */
+@media (min-width: 1024px) {
+  :root { --flowers-scale: 0.65; }               /* Reducir escala general para que no ocupe más de la mitad */
+  .flowers { bottom: -8vh !important; }
+  #lyrics { 
+    top: 50% !important;                          /* Centro perfecto en PC */
+  }
+}
+
+/* —— Monitores grandes —— */
+@media (min-width: 1440px) {
+  :root { --flowers-scale: 0.55; }               /* Aún más pequeño en monitores grandes */
+  .flowers { bottom: -10vh !important; }
+  #lyrics { 
+    top: 50% !important;                          /* Centro perfecto en monitores grandes */
+  }
+}
